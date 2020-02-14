@@ -1,7 +1,7 @@
 class CashRegister
   attr_accessor :total, :discount
   
-  def initialize(discount = nil)
+  def initialize(discount = 0)
     @total = 0
     @discount = discount
   end
@@ -11,8 +11,12 @@ class CashRegister
   end
   
   def apply_discount
-    @total = @total - (@total * discount * 0.01)
-    "After the discount, the total comes to $#{@total.truncate()}."
+    if discount == 0
+      "There is no discount."
+    else
+      @total = @total - (@total * discount * 0.01)
+      "After the discount, the total comes to $#{@total.truncate()}."
+    end
   end
   
   
